@@ -10,5 +10,8 @@ COPY App.java /app
 # Compile the Java application
 RUN javac App.java
 
-# Set the command to run the Java application
+# Expose port 80 for HTTP traffic
+EXPOSE 80
+
+# Start the HTTP server
 CMD ["java", "App"]
