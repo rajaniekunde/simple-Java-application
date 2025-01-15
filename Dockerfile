@@ -1,25 +1,14 @@
-# Use an OpenJDK base image with GUI support
+# Use an OpenJDK base image
 FROM openjdk:17-jdk-slim
 
-# Install dependencies for GUI applications
-RUN apt-get update && apt-get install -y \
-    libxext6 \
-    libxrender1 \
-    libxtst6 \
-    libxi6 \
-    && rm -rf /var/lib/apt/lists/*
-
-# Set the working directory
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the Java application
+# Copy the Java source code to the container
 COPY App.java /app
 
 # Compile the Java application
 RUN javac App.java
 
-# Set the display environment variable for GUI
-ENV DISPLAY=:0
-
-# Run the Java application
+# Set the command to run the Java application
 CMD ["java", "App"]
